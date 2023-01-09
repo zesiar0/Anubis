@@ -1,0 +1,7 @@
+NAME: Test
+BIND_HOST: 0.0.0.0
+SSH_PORT: 2222
+SSH_TIMEOUT: 30
+LOG_LEVEL: info
+SSH_VERSION: anubis-0.3
+HOST_KEY_FILE: /Users/a3bz/.ssh/id_rsa
