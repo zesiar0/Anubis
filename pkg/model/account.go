@@ -7,6 +7,8 @@ type Account struct {
 	Username   string `json:"username"`
 	Secret     string `json:"secret"`
 	SecretType string `json:"secret_type"`
+
+	Assets []Asset
 }
 
 func (a *Account) String() string {
