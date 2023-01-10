@@ -9,6 +9,7 @@ type Asset struct {
 	Port     string `json:"port"        gorm:"column:port"`
 	Protocol string `json:"protocol"    gorm:"column:protocol"`
 	Platform string `json:"platform"    gorm:"column:platform"`
+	Comment  string `json:"comment"     gorm:"column:comment"`
 	IsActive bool   `json:"is_active"   gorm:"column:is_active"`
 }
 

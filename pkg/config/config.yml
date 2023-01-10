@@ -1,7 +1,20 @@
+# Server
 NAME: Test
 BIND_HOST: 0.0.0.0
 SSH_PORT: 2222
+
+# SSH
 SSH_TIMEOUT: 30
 LOG_LEVEL: info
 SSH_VERSION: anubis-0.3
 HOST_KEY_FILE: /Users/a3bz/.ssh/id_rsa
+
+# Database
+DB_TYPE: mysql
+DB_ADDRESS: 127.0.0.1
+DB_USER: root
+DB_PASS: zengjiahua123
+DB_PORT: 3306
+DB_TABLE: anubis
+DB_PARAMS:
+  CHARSET: utf8

@@ -1,7 +1,9 @@
 package handler
 
 import (
+	"Anubis/pkg/db/service"
 	"Anubis/pkg/logger"
+	"Anubis/pkg/model"
 	"Anubis/pkg/utils"
 	"github.com/gliderlabs/ssh"
 	"strconv"
@@ -9,8 +11,10 @@ import (
 )
 
 type InteractiveHandler struct {
-	sess *WrapperSession
-	term *utils.Terminal
+	sess   *WrapperSession
+	term   *utils.Terminal
+	user   *model.User
+	assets []model.Asset
 }
 
 func NewInteractiveHandler(sess ssh.Session) *InteractiveHandler {
@@ -21,6 +25,7 @@ func NewInteractiveHandler(sess ssh.Session) *InteractiveHandler {
 		term: term,
 	}
 
+	handler.Initial()
 	return handler
 }
 
@@ -30,9 +35,15 @@ const (
 	TypeAsset = iota + 1
 )
 
+func (h *InteractiveHandler) Initial() {
+	h.displayHelp()
+	assetService := &service.AssetService{}
+	allAssets := assetService.GetAssetsByUser(h.user.Name)
+	copy(h.assets, allAssets)
+}
+
 func (h *InteractiveHandler) Dispatch() {
 	defer logger.Infof("Request %s: User stop interactive", h.sess.ID())
-    h.displayHelp()
 	for {
 		line, err := h.term.ReadLine()
 		if err != nil {

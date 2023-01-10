@@ -2,6 +2,7 @@ package anubis
 
 import (
 	"Anubis/pkg/config"
+	"Anubis/pkg/db"
 	"Anubis/pkg/logger"
 	"Anubis/pkg/sshd"
 	"os"
@@ -27,4 +28,5 @@ func Run(configPath string) {
 
 func bootstrap() {
 	logger.Initial()
+	db.Initial()
 }
